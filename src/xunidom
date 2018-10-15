@@ -1,0 +1,20 @@
+react中的虚拟dom:react的底层原理
+1、state
+2、JSX模板
+3、生成虚拟DOM生成虚拟DOM是个js对象，用它描述真实的dom，会损耗部分性能，但比生成dom损耗性能小的多
+['div',{id:'aa'},['span',{},'aaa']]
+4、根据虚拟DOM生成真实DOM
+<div id='aa'><span>aaa</span></div>
+5、state发生变化
+6、state+JSX生成新的虚拟dom
+['div',{id:'aa'},['span',{},'bbb']]
+7、比较前后的虚拟dom，找到差异（极大提升性能）（运用Diff算法）
+8、直接操作DOM改变不同的内容
+优点：1'跨端得以实现，如ReactNative
+    2\性能提升
+
+render() //JSX-createELement-虚拟DOmJS对象-真实DOM
+
+Diff算法采用的是同层比较方法，当顶层数据比较出现差异，他不会继续比较底层的差异，直接修改DOM。
+比较内容是相关的key，所以在循环中不使用index作为key，因为key不稳定，当删掉内容，index会发生变化，
+从而造成其他dom的key发生变化。
